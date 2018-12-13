@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+ * Created by 
+ * FrogoBox Inc License
+ * =========================================
+ * 
+ * Copyright (C) .      
+ * All rights reserved
+ * 
+ * Name     : Muhammad Faisal Amir
+ * E-mail   : faisalamircs@gmail.com
+ * Line     : bullbee117
+ * Phone    : 081357108568
+ * Majors   : D3 Teknik Informatika 2016
+ * Campus   : Telkom University
+ * 
+ * id.amirisback.frogobox
+ * 
+ -->
+
+<resources>
+
+    <item type="id" name="tablayout_match"/>
+    <item type="id" name="viewpager_match"/>
+    <item type="id" name="navigation"/>
+
+    <item type="id" name="tablayout_team"/>
+    <item type="id" name="viewpager_team"/>
+
+    <item type="id" name="tablayout_favorite"/>
+    <item type="id" name="viewpager_favorite"/>
+
+    <item type="id" name="recyclerView_player"/>
+    <item type="id" name="progressBar_player"/>
+
+    <!--ID untnuk fragment_team_overview-->
+    <item type="id" name="textview_team_overview"/>
+
+    <!--ID untuk content_list_player-->
+    <item type="id" name="textview_player_list_name"/>
+    <item type="id" name="textview_player_list_position"/>
+    <item type="id" name="imageview_player_list_badge"/>
+
+    <!--ID untuk Content_list_team-->
+    <item type="id" name="textview_team_list_name"/>
+    <item type="id" name="imageview_team_list_badge"/>
+
+    <!--ID untuk ActivityTeamSearch-->
+    <item type="id" name="recyclerView_teamSearch"/>
+    <item type="id" name="progressBar_teamSearch"/>
+
+    <!--ID untuk ActivityMatchSearch-->
+    <item type="id" name="recyclerView_matchSearch"/>
+    <item type="id" name="progressBar_matchSearch"/>
+
+    <!--ID untuk TeamFavoriteFragment-->
+    <item type="id" name="recyclerView_teamFav"/>
+    <item type="id" name="swipeRefresh_teamFav"/>
+    <item type="id" name="progressBar_teamFav"/>
+    <item type="id" name="spinner_teamFav"/>
+
+    <!--ID untuk TeamHomeFragment-->
+    <item type="id" name="recyclerView_team"/>
+    <item type="id" name="swipeRefresh_team"/>
+    <item type="id" name="progressBar_team"/>
+    <item type="id" name="spinner_team"/>
+
+    <!--ID untuk MatchLastFragment-->
+    <item type="id" name="spinner_LastMatch"/>
+    <item type="id" name="recyclerView_LastMatch"/>
+    <item type="id" name="swipeRefresh_LastMatch"/>
+    <item type="id" name="progressBar_LastMatch"/>
+
+    <!--ID untuk MatchNextFragment-->
+    <item type="id" name="spinner_NextMatch"/>
+    <item type="id" name="recyclerView_NextMatch"/>
+    <item type="id" name="swipeRefresh_NextMatch"/>
+    <item type="id" name="progressBar_NextMatch"/>
+
+    <!--ID untuk FavoriteMatchFragment-->
+    <item type="id" name="recyclerView_FavMatch"/>
+    <item type="id" name="swipeRefresh_FavMatch"/>
+    <item type="id" name="progressBar_FavMatch"/>
+
+    <!--ID Untuk ListItem-->
+    <item type="id" name="textview_match_list_date"/>
+    <item type="id" name="textview_match_list_time"/>
+    <item type="id" name="textview_match_list_home_team"/>
+    <item type="id" name="textview_match_list_home_score"/>
+    <item type="id" name="textview_match_list_vs"/>
+    <item type="id" name="textview_match_list_away_team"/>
+    <item type="id" name="textview_match_list_away_score"/>
+
+    <!--ID Untuk Detail ListItem-->
+    <item type="id" name="textview_detail_match_goals"/>
+    <item type="id" name="textview_detail_match_shots"/>
+    <item type="id" name="textview_detail_match_lineup"/>
+    <item type="id" name="textview_detail_match_goalkeeper"/>
+    <item type="id" name="textview_detail_match_defense"/>
+    <item type="id" name="textview_detail_match_midfield"/>
+    <item type="id" name="textview_detail_match_forward"/>
+    <item type="id" name="textview_detail_match_substitute"/>
+
+    <item type="id" name="textview_detail_match_date"/>
+    <item type="id" name="textview_detail_match_time"/>
+    <item type="id" name="textview_detail_match_vs"/>
+    <item type="id" name="layout_detail_match_container"/>
+    <item type="id" name="layout_detail_team_container"/>
+
+    <item type="id" name="textview_detail_match_home_image"/>
+    <item type="id" name="textview_detail_match_home_team"/>
+    <item type="id" name="textview_detail_match_home_score"/>
+    <item type="id" name="textview_detail_match_home_formation"/>
+    <item type="id" name="textview_detail_match_home_goals"/>
+    <item type="id" name="textview_detail_match_home_shots"/>
+    <item type="id" name="textview_detail_match_home_goalkeeper"/>
+    <item type="id" name="textview_detail_match_home_defense"/>
+    <item type="id" name="textview_detail_match_home_midfield"/>
+    <item type="id" name="textview_detail_match_home_forward"/>
+    <item type="id" name="textview_detail_match_home_substitute"/>
+
+    <item type="id" name="textview_detail_match_away_image"/>
+    <item type="id" name="textview_detail_match_away_team"/>
+    <item type="id" name="textview_detail_match_away_score"/>
+    <item type="id" name="textview_detail_match_away_formation"/>
+    <item type="id" name="textview_detail_match_away_goals"/>
+    <item type="id" name="textview_detail_match_away_shots"/>
+    <item type="id" name="textview_detail_match_away_goalkeeper"/>
+    <item type="id" name="textview_detail_match_away_defense"/>
+    <item type="id" name="textview_detail_match_away_midfield"/>
+    <item type="id" name="textview_detail_match_away_forward"/>
+    <item type="id" name="textview_detail_match_away_substitute"/>
+
+    <!--ID untuk Team Detail-->
+    <item type="id" name="textview_detail_team_name"/>
+    <item type="id" name="textview_detail_team_year"/>
+    <item type="id" name="textview_detail_team_stadium"/>
+    <item type="id" name="imageview_detail_team_badge"/>
+
+    <!--ID untuk Player Detail-->
+    <item type="id" name="textview_detail_player_height"/>
+    <item type="id" name="textview_detail_player_weight"/>
+    <item type="id" name="textview_detail_player_position"/>
+    <item type="id" name="textview_detail_player_desc"/>
+    <item type="id" name="imageview_detail_player_poster"/>
+
+    <!--ID untuk ActivityMatchSearch-->
+    <item type="id" name="textview_searchmatch_null"/>
+    <item type="id" name="cardview_searchmatch_back"/>
+    <item type="id" name="edittext_searchmatch"/>
+    <item type="id" name="cardview_searchmatch_remove"/>
+    <item type="id" name="swiperefresh_searchmatch"/>
+    <item type="id" name="recyclerview_searchmatch"/>
+
+    <!--ID untuk ActivityTeamSearch-->
+    <item type="id" name="textview_searchteam_null"/>
+    <item type="id" name="cardview_searchteam_back"/>
+    <item type="id" name="edittext_searchteam"/>
+    <item type="id" name="cardview_searchteam_remove"/>
+    <item type="id" name="swiperefresh_searchteam"/>
+    <item type="id" name="recyclerview_searchteam"/>
+
+</resources>

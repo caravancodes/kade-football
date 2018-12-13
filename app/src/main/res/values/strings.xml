@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">FootBall Apps</string>
+
+    <string name="title_primary">Football Match Schedule</string>
+    <string name="title_detail">Match Detail</string>
+
+    <!--String TabLayout-->
+    <string name="last_match">Prev Match</string>
+    <string name="next_match">Next Match</string>
+
+    <string-array name="league">
+        <item>English Premier League</item>
+        <item>English League Championship</item>
+        <item>German Bundesliga</item>
+        <item>Italian Serie A</item>
+        <item>French Ligue 1</item>
+        <item>Spanish La Liga</item>
+    </string-array>
+
+    <string name="tab_match_last">Last</string>
+    <string name="tab_match_next">Next</string>
+    <string name="tab_team_overview">Overview</string>
+    <string name="tab_team_player">Player</string>
+    <string name="tab_favorite_match">Match</string>
+    <string name="tab_favorite_team">Team</string>
+
+    <string name="bottom_match">Matches</string>
+    <string name="bottom_teams">Teams</string>
+    <string name="favorite">Favorite</string>
+    <string name="favorites">Favorites</string>
+
+    <!--String ListItem-->
+    <string name="date">Date</string>
+    <string name="vs_match">vs</string>
+    <string name="home_text">Home</string>
+    <string name="home_image">Home Logo</string>
+    <string name="home_score">0</string>
+    <string name="away_text">Away</string>
+    <string name="away_image">Away Logo</string>
+    <string name="away_score">0</string>
+
+    <!--String Detail-->
+    <string name="detail_goals">Goals</string>
+    <string name="detail_formation">4-4-2</string>
+    <string name="detail_shots">Shots</string>
+    <string name="detail_lineup">Lineups</string>
+    <string name="detail_goalkeeper">Goal Keeper</string>
+    <string name="detail_defense">Defense</string>
+    <string name="detail_midfield">Midfield</string>
+    <string name="detail_forward">Forward</string>
+    <string name="detail_substitutes">Substitutes</string>
+
+    <!--String dicoding-->
+    <string name="dicoding">Dicoding</string>
+    <string name="thanks_dicoding">Terima Kasih Dicoding</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="detail_player_weight">Weight (Kg)</string>
+    <string name="detail_player_height">Height (m)</string>
+    <string name="matchesNotFound">Data Not Found</string>
+
+</resources>

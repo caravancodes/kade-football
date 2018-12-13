@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh_teamDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+            android:id="@id/layout_detail_team_container"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+        <android.support.design.widget.AppBarLayout
+                android:id="@+id/top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="0dp"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <ImageView android:layout_width="80dp"
+                           android:layout_height="80dp"
+                           android:layout_gravity="center"
+                           android:layout_marginTop="15dp"
+                           tools:src="@mipmap/ic_launcher"
+                           android:id="@id/imageview_detail_team_badge"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:id="@id/textview_detail_team_name"
+                          android:layout_gravity="center"
+                          tools:text="Nama"
+                          android:textSize="18sp"
+                          android:layout_marginTop="10dp"
+                          android:textColor="@color/textWhite"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center"
+                          tools:text="@string/detail_formation"
+                          android:id="@id/textview_detail_team_year"
+                          android:textSize="14sp"
+                          android:textColor="@color/textWhite"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_gravity="center"
+                          tools:text="Stadion"
+                          android:id="@id/textview_detail_team_stadium"
+                          android:textSize="16sp"
+                          android:textColor="@color/textWhite"
+                          android:layout_marginBottom="3dp"/>
+            </LinearLayout>
+
+            <android.support.design.widget.TabLayout
+                    android:id="@id/tablayout_team"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    app:tabTextColor="@color/textGrey"
+                    app:tabSelectedTextColor="@color/textWhite"
+                    app:tabGravity="fill"
+                    app:tabMode="fixed"/>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.view.ViewPager
+                android:layout_below="@id/top"
+                android:id="@id/viewpager_team"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+
+        <ProgressBar android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_centerInParent="true"
+                     android:id="@+id/progressBar_teamDetail"/>
+
+    </RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

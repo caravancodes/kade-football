@@ -1,0 +1,90 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="DetailHomeTextItem">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">start</item>
+        <item name="android:text">@string/home_text</item>
+        <item name="android:textSize">@dimen/detailTextItemAttribute</item>
+        <item name="android:textColor">@color/textBlack</item>
+    </style>
+
+    <style name="DetailAwayTextItem">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">end</item>
+        <item name="android:text">@string/away_text</item>
+        <item name="android:textSize">@dimen/detailTextItemAttribute</item>
+        <item name="android:textColor">@color/textBlack</item>
+    </style>
+
+    <style name="DetailTitleTextItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">@dimen/small</item>
+        <item name="android:paddingRight">@dimen/small</item>
+        <item name="android:gravity">top</item>
+        <item name="android:textColor">@color/textOrange</item>
+    </style>
+
+    <style name="DetailLayoutContainerTextItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/small</item>
+    </style>
+
+    <style name="DetailTextScore">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/scoreTextSize</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_marginLeft">@dimen/small</item>
+        <item name="android:layout_marginRight">@dimen/small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textBlack</item>
+    </style>
+
+    <style name="DetailTextTeamName">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/textOrange</item>
+        <item name="android:textSize">@dimen/teamName</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DetailTextTeamFormation">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/textBlack</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+
+    <style name="AppThemeNoBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="editTextEmpty" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColorHint">@color/textWhite</item>
+        <item name="colorAccent">@android:color/holo_orange_dark</item>
+        <item name="android:background"></item>
+    </style>
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".views.fragments.TeamOverviewFragment">
+
+    <TextView
+            android:layout_margin="@dimen/primary"
+            android:id="@id/textview_team_overview"
+            android:layout_width="match_parent"
+            android:text="@string/favorite"
+            android:layout_height="wrap_content"/>
+
+</ScrollView>

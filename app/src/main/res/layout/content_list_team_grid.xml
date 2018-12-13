@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+ * Created by 
+ * FrogoBox Inc License
+ * =========================================
+ * 
+ * Copyright (C) .      
+ * All rights reserved
+ * 
+ * Name     : Muhammad Faisal Amir
+ * E-mail   : faisalamircs@gmail.com
+ * Line     : bullbee117
+ * Phone    : 081357108568
+ * Majors   : D3 Teknik Informatika 2016
+ * Campus   : Telkom University
+ * 
+ * id.amirisback.frogobox
+ * 
+ -->
+
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_margin="@dimen/small"
+        android:layout_height="wrap_content">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small"
+            android:gravity="center">
+
+        <ImageView
+                android:id="@id/imageview_team_list_badge"
+                android:layout_width="@dimen/imageSizeBadgeGrid"
+                android:layout_height="@dimen/imageSizeBadgeGrid"
+                tools:src="@mipmap/ic_launcher"/>
+
+        <TextView
+                android:id="@id/textview_team_list_name"
+                android:layout_width="@dimen/imageSizeBadgeGrid"
+                android:layout_height="@dimen/primary"
+                tools:text="@string/favorite"
+                android:textAlignment="center"
+                android:maxHeight="@dimen/primary"
+                android:textColor="@color/textBlack"
+                android:textSize="@dimen/textSizeBadgeGrid"
+                android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
