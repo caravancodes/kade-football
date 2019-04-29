@@ -3,7 +3,7 @@ package id.frogobox.footballapps.presenters
 import android.content.Context
 import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteException
-import android.support.v4.widget.SwipeRefreshLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.frogobox.footballapps.helpers.utils.formatDateToMatch
 import id.frogobox.footballapps.helpers.utils.formatTimeToMatch
 import id.frogobox.footballapps.models.databases.database
@@ -34,7 +34,8 @@ import org.jetbrains.anko.design.snackbar
  */
 class FavoriteDetailMatchPresenter(private val context: Context,
                                    private val matchData: MutableList<Match>,
-                                   private val swipeRefresh: SwipeRefreshLayout) {
+                                   private val swipeRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+) {
 
     var isFavorite = false
 

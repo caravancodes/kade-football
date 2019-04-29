@@ -5,11 +5,11 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.*
 import android.widget.*
 import com.google.gson.Gson
@@ -31,15 +31,15 @@ import org.jetbrains.anko.support.v4.runOnUiThread
 import org.jetbrains.anko.support.v4.startActivity
 
 
-class TeamHomeFragment : Fragment(), TeamView {
+class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamView {
 
     private var teams: MutableList<Team> = mutableListOf()
     private lateinit var leagueNameAPI: String
     private lateinit var presenter: TeamPresenter
     private lateinit var adapter: TeamRecyclerViewAdapter
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
     private lateinit var progressBar: ProgressBar
-    private lateinit var swipeRefresh: SwipeRefreshLayout
+    private lateinit var swipeRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     private lateinit var spinner: Spinner
 
     override fun onCreateView(
@@ -51,8 +51,8 @@ class TeamHomeFragment : Fragment(), TeamView {
         // -------------------------------------------------------------------------------------------------------------
         val request = ApiRepository()
         val gson = Gson()
-        val mLayoutManager = GridLayoutManager(activity, 3)
-        val divider = DividerItemDecoration(context, mLayoutManager.orientation)
+        val mLayoutManager = androidx.recyclerview.widget.GridLayoutManager(activity, 3)
+        val divider = androidx.recyclerview.widget.DividerItemDecoration(context, mLayoutManager.orientation)
         setHasOptionsMenu(true)
         // -------------------------------------------------------------------------------------------------------------
         progressBar = rootView.progressBar_team

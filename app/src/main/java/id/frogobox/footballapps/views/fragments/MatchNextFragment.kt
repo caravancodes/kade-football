@@ -5,11 +5,11 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,14 +31,14 @@ import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.runOnUiThread
 import org.jetbrains.anko.support.v4.startActivity
 
-class MatchNextFragment : Fragment(), MatchView {
+class MatchNextFragment : androidx.fragment.app.Fragment(), MatchView {
 
     private var matches: MutableList<Match> = mutableListOf()
     private lateinit var presenter: MatchPresenter
     private lateinit var adapter: MatchRecyclerViewAdapter
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
     private lateinit var progressBar: ProgressBar
-    private lateinit var swipeRefresh: SwipeRefreshLayout
+    private lateinit var swipeRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     private lateinit var spinner: Spinner
     private lateinit var leagueName: String
     private lateinit var leagueIdApi: String
@@ -50,8 +50,8 @@ class MatchNextFragment : Fragment(), MatchView {
         val rootView = inflater.inflate(R.layout.fragment_match_next, container, false)
         val request = ApiRepository()
         val gson = Gson()
-        val mLayoutManager = LinearLayoutManager(activity)
-        val divider = DividerItemDecoration(context, mLayoutManager.orientation)
+        val mLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
+        val divider = androidx.recyclerview.widget.DividerItemDecoration(context, mLayoutManager.orientation)
         val api = "eventsnextleague.php"
         // -----------------------------------------------------------------------------------------
         progressBar = rootView.progressBar_NextMatch

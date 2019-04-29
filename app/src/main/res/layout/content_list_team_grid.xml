@@ -19,7 +19,7 @@
  * 
  -->
 
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -50,4 +50,4 @@
                 android:textSize="@dimen/textSizeBadgeGrid"
                 android:layout_gravity="center_vertical"/>
     </LinearLayout>
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

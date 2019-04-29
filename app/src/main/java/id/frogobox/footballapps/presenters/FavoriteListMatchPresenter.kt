@@ -1,7 +1,7 @@
 package id.frogobox.footballapps.presenters
 
 import android.content.Context
-import android.support.v4.widget.SwipeRefreshLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.widget.ProgressBar
 import id.frogobox.footballapps.helpers.utils.invisible
 import id.frogobox.footballapps.models.databases.database
@@ -30,7 +30,7 @@ import org.jetbrains.anko.db.select
 class FavoriteListMatchPresenter (private val context: Context?,
                                   private var favorites: MutableList<FavoriteMatch>,
                                   private val progressBar: ProgressBar,
-                                  private val swipeRefresh: SwipeRefreshLayout,
+                                  private val swipeRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout,
                                   private var adapter: FavoriteMatchRecyclerViewAdapter
 ){
 

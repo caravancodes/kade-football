@@ -1,7 +1,7 @@
 package id.frogobox.footballapps.views.fragments
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import id.frogobox.footballapps.R
 import id.frogobox.footballapps.helpers.utils.BundleHelper
 import kotlinx.android.synthetic.main.fragment_team_overview.view.*
 
-class TeamOverviewFragment : Fragment() {
+class TeamOverviewFragment : androidx.fragment.app.Fragment() {
 
 
     override fun onCreateView(

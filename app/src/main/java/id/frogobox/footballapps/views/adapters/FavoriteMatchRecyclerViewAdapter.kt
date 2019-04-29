@@ -1,7 +1,7 @@
 package id.frogobox.footballapps.views.adapters
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.content_list_match.view.*
  * id.amirisback.frogobox
  */
 class FavoriteMatchRecyclerViewAdapter(private val context: Context?, private val favorites: List<FavoriteMatch>, private var listener :
-    (FavoriteMatch) -> Unit) : RecyclerView.Adapter<FavoriteMatchRecyclerViewAdapter.ViewHolder>() {
+    (FavoriteMatch) -> Unit) : androidx.recyclerview.widget.RecyclerView.Adapter<FavoriteMatchRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(LayoutInflater.from(context).inflate(R.layout.content_list_match, parent, false))
@@ -38,7 +38,7 @@ class FavoriteMatchRecyclerViewAdapter(private val context: Context?, private va
 
     override fun getItemCount(): Int = favorites.size
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view){
 
         private val matchDate = view.textview_match_list_date
         private val matchTime = view.textview_match_list_time

@@ -1,7 +1,7 @@
 package id.frogobox.footballapps.views.interfaces
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 
 /**
  * Created by Faisal Amir
@@ -21,5 +21,5 @@ import android.support.v4.app.Fragment
  * id.amirisback.frogobox
  */
 interface MainView : FragmentView {
-    fun onShowFragment(mFragment: Fragment, savedInstanceState: Bundle?)
+    fun onShowFragment(mFragment: androidx.fragment.app.Fragment, savedInstanceState: Bundle?)
 }

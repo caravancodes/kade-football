@@ -1,11 +1,6 @@
 package id.frogobox.footballapps.views.fragments
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,14 +15,14 @@ import kotlinx.android.synthetic.main.fragment_favorite_team.view.*
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 
-class FavoriteTeamFragment : Fragment() {
+class FavoriteTeamFragment : androidx.fragment.app.Fragment() {
 
     private var favorites: MutableList<FavoriteTeam> = mutableListOf()
     private lateinit var adapter: FavoriteTeamRecyclerViewAdapter
     private lateinit var presenter: FavoriteListTeamPresenter
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
     private lateinit var progressBar: ProgressBar
-    private lateinit var swipeRefresh: SwipeRefreshLayout
+    private lateinit var swipeRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +30,8 @@ class FavoriteTeamFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_favorite_team, container, false)
-        val mLayoutManager = LinearLayoutManager(activity)
-        val divider = DividerItemDecoration(context, mLayoutManager.orientation)
+        val mLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
+        val divider = androidx.recyclerview.widget.DividerItemDecoration(context, mLayoutManager.orientation)
         // -----------------------------------------------------------------------------------------
         progressBar = rootView.progressBar_teamFav
         recyclerView = rootView.recyclerView_teamFav

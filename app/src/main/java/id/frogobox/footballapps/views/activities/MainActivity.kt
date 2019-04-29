@@ -1,8 +1,8 @@
 package id.frogobox.footballapps.views.activities
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import id.frogobox.footballapps.R
 import id.frogobox.footballapps.presenters.MainPresenter
 import id.frogobox.footballapps.views.fragments.FavoriteHomeFragment
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), MainView {
         presenter = MainPresenter()
     }
 
-    override fun onShowFragment(mFragment: Fragment, savedInstanceState: Bundle?) {
+    override fun onShowFragment(mFragment: androidx.fragment.app.Fragment, savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()

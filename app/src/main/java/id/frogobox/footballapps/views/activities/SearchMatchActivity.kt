@@ -4,8 +4,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
@@ -34,7 +34,7 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_search)
         // -------------------------------------------------------------------------------------------------------------
-        recyclerview_searchmatch.layoutManager = LinearLayoutManager(this)
+        recyclerview_searchmatch.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         textview_searchmatch_null.invisible()
         // -------------------------------------------------------------------------------------------------------------
         val request = ApiRepository()

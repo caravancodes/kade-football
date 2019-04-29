@@ -3,14 +3,13 @@ package id.frogobox.footballapps.views.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.*
 import id.frogobox.footballapps.R
 import id.frogobox.footballapps.views.activities.SearchMatchActivity
 import id.frogobox.footballapps.views.adapters.FragmentViewPagerAdapter
 import kotlinx.android.synthetic.main.fragment_match_home.view.*
 
-class MatchHomeFragment : Fragment() {
+class MatchHomeFragment : androidx.fragment.app.Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +28,7 @@ class MatchHomeFragment : Fragment() {
         return rootView
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_search, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }

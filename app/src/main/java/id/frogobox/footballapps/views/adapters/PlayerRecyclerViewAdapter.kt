@@ -1,7 +1,7 @@
 package id.frogobox.footballapps.views.adapters
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.content_list_player.view.*
  * id.amirisback.frogobox
  */
 class PlayerRecyclerViewAdapter (private val context: Context?, private val players: List<Player>, private var listener :
-    (Player) -> Unit) : RecyclerView.Adapter<PlayerRecyclerViewAdapter.ViewHolder>() {
+    (Player) -> Unit) : androidx.recyclerview.widget.RecyclerView.Adapter<PlayerRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(LayoutInflater.from(context).inflate(R.layout.content_list_player, parent, false))
@@ -39,7 +39,7 @@ class PlayerRecyclerViewAdapter (private val context: Context?, private val play
 
     override fun getItemCount(): Int = players.size
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view){
 
         private val imagePlayer = view.imageview_player_list_badge
         private val textPlayerName = view.textview_player_list_name

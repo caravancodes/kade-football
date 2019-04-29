@@ -4,8 +4,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
@@ -34,7 +34,7 @@ class SearchTeamActivity : AppCompatActivity(), SearchTeamView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_team_search)
         // -------------------------------------------------------------------------------------------------------------
-        recyclerview_searchteam.layoutManager = GridLayoutManager(this, 3)
+        recyclerview_searchteam.layoutManager = androidx.recyclerview.widget.GridLayoutManager(this, 3)
         textview_searchteam_null.invisible()
         // -------------------------------------------------------------------------------------------------------------
         val request = ApiRepository()

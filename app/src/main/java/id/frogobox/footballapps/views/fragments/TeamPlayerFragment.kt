@@ -5,10 +5,10 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,12 +31,12 @@ import org.jetbrains.anko.support.v4.runOnUiThread
 import org.jetbrains.anko.support.v4.startActivity
 
 
-class TeamPlayerFragment : Fragment(), PlayerView {
+class TeamPlayerFragment : androidx.fragment.app.Fragment(), PlayerView {
 
     private var players: MutableList<Player> = mutableListOf()
     private lateinit var presenter: PlayerPresenter
     private lateinit var adapter: PlayerRecyclerViewAdapter
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
     private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(
@@ -48,8 +48,8 @@ class TeamPlayerFragment : Fragment(), PlayerView {
         val rootView = inflater.inflate(R.layout.fragment_team_player, container, false)
         val request = ApiRepository()
         val gson = Gson()
-        val mLayoutManager = GridLayoutManager(activity, 3)
-        val divider = DividerItemDecoration(context, mLayoutManager.orientation)
+        val mLayoutManager = androidx.recyclerview.widget.GridLayoutManager(activity, 3)
+        val divider = androidx.recyclerview.widget.DividerItemDecoration(context, mLayoutManager.orientation)
         // -----------------------------------------------------------------------------------------
         progressBar = rootView.progressBar_player
         recyclerView = rootView.recyclerView_player

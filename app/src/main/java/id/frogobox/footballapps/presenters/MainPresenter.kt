@@ -1,7 +1,7 @@
 package id.frogobox.footballapps.presenters
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import id.frogobox.footballapps.views.interfaces.HandlerMainView
 import id.frogobox.footballapps.views.interfaces.MainView
 
@@ -34,7 +34,7 @@ class MainPresenter : HandlerMainView<MainView> {
         mView = null
     }
 
-    fun showFragment(mFragment: Fragment, savedInstanceState: Bundle?) {
+    fun showFragment(mFragment: androidx.fragment.app.Fragment, savedInstanceState: Bundle?) {
         mView?.onShowFragment(mFragment, savedInstanceState)
     }
 }

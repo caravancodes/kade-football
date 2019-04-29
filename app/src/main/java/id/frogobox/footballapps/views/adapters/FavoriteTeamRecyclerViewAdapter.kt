@@ -1,7 +1,7 @@
 package id.frogobox.footballapps.views.adapters
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +39,7 @@ class FavoriteTeamRecyclerViewAdapter (private val context: Context?, private va
 
     override fun getItemCount(): Int = teams.size
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view){
 
         private val imageFavoriteTeam = view.imageview_team_list_badge
         private val textFavoriteTeam = view.textview_team_list_name

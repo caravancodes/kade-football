@@ -1,8 +1,8 @@
 package id.frogobox.footballapps.views.adapters
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 
 /**
  * Created by Faisal Amir
@@ -21,7 +21,7 @@ import android.support.v4.app.FragmentPagerAdapter
  * -----------------------------------------
  * id.amirisback.frogobox
  */
-class FragmentViewPagerAdapter (fm: FragmentManager): FragmentPagerAdapter(fm){
+class FragmentViewPagerAdapter (fm: FragmentManager): androidx.fragment.app.FragmentPagerAdapter(fm){
 
     private val fragments = ArrayList<Fragment>()
     private val titles = ArrayList<String>()

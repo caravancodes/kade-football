@@ -1,15 +1,15 @@
 package id.frogobox.footballapps
 
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.Espresso.pressBack
-import android.support.test.espresso.NoMatchingViewException
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
-import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
-import android.support.v7.widget.RecyclerView
+
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.NoMatchingViewException
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import id.frogobox.footballapps.R.id.*
 import id.frogobox.footballapps.views.activities.MainActivity
 import org.junit.Rule
@@ -61,7 +61,7 @@ class LastMatchCrudTest {
             Thread.sleep(3000)
             // Memilih data baris ke 0 pada recyclerview favorite match fragment
             onView(withId(recyclerView_FavMatch)).check(matches(isDisplayed()))
-            onView(withId(recyclerView_FavMatch)).perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+            onView(withId(recyclerView_FavMatch)).perform(actionOnItemAtPosition<androidx.recyclerview.widget.RecyclerView.ViewHolder>(0, click()))
             Thread.sleep(3000)
             // Mengapus data pada database
             onView(withId(add_to_favorite)).check(matches(isDisplayed()))

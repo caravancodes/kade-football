@@ -20,10 +20,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <android.support.v7.widget.Toolbar
+            <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/colorPrimary">
@@ -35,7 +35,7 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="4dp"
                             android:layout_marginRight="4dp"
@@ -51,7 +51,7 @@
                                 app:srcCompat="@drawable/ic_arrow_back"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"/>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
                     <EditText
                             android:id="@id/edittext_searchmatch"
                             android:layout_width="0dp"
@@ -60,7 +60,7 @@
                             android:hint="Search"
                             style="@style/editTextEmpty"
                             android:textSize="18sp"/>
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                             android:layout_margin="4dp"
                             android:id="@id/cardview_searchmatch_remove"
                             android:layout_width="48dp"
@@ -74,25 +74,25 @@
                                 app:srcCompat="@drawable/ic_close"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"/>
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
-            </android.support.v7.widget.Toolbar>
-        </android.support.design.widget.AppBarLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <android.support.v4.widget.SwipeRefreshLayout
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@id/swiperefresh_searchmatch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                     android:layout_marginTop="16dp"
                     android:id="@id/recyclerview_searchmatch"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:listitem="@layout/content_list_match">
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 

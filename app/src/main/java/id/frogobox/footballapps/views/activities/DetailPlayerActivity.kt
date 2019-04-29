@@ -1,7 +1,7 @@
 package id.frogobox.footballapps.views.activities
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import com.squareup.picasso.Picasso
 import id.frogobox.footballapps.R
@@ -23,7 +23,6 @@ class DetailPlayerActivity : AppCompatActivity() {
         if (intent.hasExtra(DetailPlayerActivity.STRING_EXTRA_PLAYER)) {
             // -------------------------------------------------------------------------------------
             val dataPlayer = intent.getParcelableExtra<Player>(DetailPlayerActivity.STRING_EXTRA_PLAYER)
-            val playerID = dataPlayer.playerId
             val playerName = dataPlayer.playerName
             val playerPoster = dataPlayer.playerPoster
             val playerHeight = dataPlayer.playerHeight
