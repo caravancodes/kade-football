@@ -28,53 +28,40 @@
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/colorPrimary">
                 <LinearLayout
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
                         android:orientation="horizontal"
+                        android:gravity="center"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                    <androidx.cardview.widget.CardView
-                            android:layout_marginTop="4dp"
-                            android:layout_marginBottom="4dp"
-                            android:layout_marginRight="4dp"
-                            android:id="@id/cardview_searchmatch_back"
-                            android:layout_width="48dp"
-                            android:layout_height="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="16dp">
+                    <ImageView
+                            android:id="@+id/iv_back"
                             android:clickable="true"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="@color/colorPrimary"
-                            android:foreground="?android:attr/selectableItemBackground">
-                        <ImageView
-                                android:layout_margin="8dp"
-                                app:srcCompat="@drawable/ic_arrow_back"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
-                    </androidx.cardview.widget.CardView>
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/ic_arrow_back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:focusable="true" />
+
                     <EditText
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
                             android:id="@id/edittext_searchmatch"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="match_parent"
                             android:hint="Search"
-                            style="@style/editTextEmpty"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#FFFFFF"
                             android:textSize="18sp"/>
-                    <androidx.cardview.widget.CardView
-                            android:layout_margin="4dp"
-                            android:id="@id/cardview_searchmatch_remove"
-                            android:layout_width="48dp"
-                            android:layout_height="match_parent"
+                    <ImageView
+                            android:id="@+id/iv_close"
+                            android:padding="8dp"
                             android:clickable="true"
-                            app:cardElevation="0dp"
-                            app:cardBackgroundColor="@color/colorPrimary"
-                            android:foreground="?android:attr/selectableItemBackground">
-                        <ImageView
-                                android:layout_margin="8dp"
-                                app:srcCompat="@drawable/ic_close"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
-                    </androidx.cardview.widget.CardView>
+                            app:srcCompat="@drawable/ic_close"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:focusable="true" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>

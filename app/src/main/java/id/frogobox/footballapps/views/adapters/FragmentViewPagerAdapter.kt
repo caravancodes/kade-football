@@ -21,7 +21,7 @@ import androidx.fragment.app.FragmentPagerAdapter
  * -----------------------------------------
  * id.amirisback.frogobox
  */
-class FragmentViewPagerAdapter (fm: FragmentManager): androidx.fragment.app.FragmentPagerAdapter(fm){
+class FragmentViewPagerAdapter (fm: FragmentManager): FragmentPagerAdapter(fm){
 
     private val fragments = ArrayList<Fragment>()
     private val titles = ArrayList<String>()

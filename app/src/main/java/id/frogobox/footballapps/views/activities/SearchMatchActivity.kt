@@ -63,10 +63,10 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         recyclerview_searchmatch.adapter = adapter
 
         // -------------------------------------------------------------------------------------------------------------
-        cardview_searchmatch_back.onClick {
+        iv_back.onClick {
             onBackPressed()
         }
-        cardview_searchmatch_remove.onClick {
+        iv_close.onClick {
             edittext_searchmatch.text.clear()
             recyclerview_searchmatch.invisible()
             textview_searchmatch_null.visible()
