@@ -1,5 +1,3 @@
-## kade-football
-
 ## About This Project
 Final Submission KADE Dicoding 2018
 
