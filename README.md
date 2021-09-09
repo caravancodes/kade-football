@@ -1,7 +1,14 @@
 ![ScreenShoot Apps](https://raw.githubusercontent.com/amirisback/amirisback/master/docs/image/deprecated.png?raw=true)
 
 ## About This Project
-Final Submission KADE Dicoding 2018
+- Final Submission KADE Dicoding 2018
+- Still Using Deprecated Anko
+
+## Screen Shoot
+
+| UI 1 | UI 2 | UI 3 |
+|:----:|:----:|:----:|
+|<img width="200px" height="360px" src="docs/image/main_1.png"> | <img width="200px" height="360px" src="docs/image/main_2.png"> | <img width="200px" height="360px" src="docs/image/main_3.png"> |
 
 ## Certificate
 ![ScreenShoot Apps](docs/image/ss_kade.png?raw=true)
