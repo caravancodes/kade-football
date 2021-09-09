@@ -1,84 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefresh_teamDetail"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipeRefresh_teamDetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@id/layout_detail_team_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <RelativeLayout
-            android:id="@id/layout_detail_team_container"
-            android:orientation="vertical"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/top"
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="0dp"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-            <LinearLayout
-                    android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@id/imageview_detail_team_badge"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    tools:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    android:id="@id/textview_detail_team_name"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/textWhite"
+                    android:textSize="18sp"
+                    tools:text="Nama" />
 
-                <ImageView android:layout_width="80dp"
-                           android:layout_height="80dp"
-                           android:layout_gravity="center"
-                           android:layout_marginTop="15dp"
-                           tools:src="@mipmap/ic_launcher"
-                           android:id="@id/imageview_detail_team_badge"/>
+                <TextView
+                    android:id="@id/textview_detail_team_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/textWhite"
+                    android:textSize="14sp"
+                    tools:text="@string/detail_formation" />
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:id="@id/textview_detail_team_name"
-                          android:layout_gravity="center"
-                          tools:text="Nama"
-                          android:textSize="18sp"
-                          android:layout_marginTop="10dp"
-                          android:textColor="@color/textWhite"/>
-
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_gravity="center"
-                          tools:text="@string/detail_formation"
-                          android:id="@id/textview_detail_team_year"
-                          android:textSize="14sp"
-                          android:textColor="@color/textWhite"/>
-
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:layout_gravity="center"
-                          tools:text="Stadion"
-                          android:id="@id/textview_detail_team_stadium"
-                          android:textSize="16sp"
-                          android:textColor="@color/textWhite"
-                          android:layout_marginBottom="3dp"/>
+                <TextView
+                    android:id="@id/textview_detail_team_stadium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="3dp"
+                    android:textColor="@color/textWhite"
+                    android:textSize="16sp"
+                    tools:text="Stadion" />
             </LinearLayout>
 
             <com.google.android.material.tabs.TabLayout
-                    android:id="@id/tablayout_team"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    app:tabTextColor="@color/textGrey"
-                    app:tabSelectedTextColor="@color/textWhite"
-                    app:tabGravity="fill"
-                    app:tabMode="fixed"/>
+                android:id="@id/tablayout_team"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                app:tabGravity="fill"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/textWhite"
+                app:tabTextColor="@color/textGrey" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager.widget.ViewPager
-                android:layout_below="@id/top"
-                android:id="@id/viewpager_team"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:id="@id/viewpager_team"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/top">
 
         </androidx.viewpager.widget.ViewPager>
 
-        <ProgressBar android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_centerInParent="true"
-                     android:id="@+id/progressBar_teamDetail"/>
+        <ProgressBar
+            android:id="@+id/progressBar_teamDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
 
     </RelativeLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

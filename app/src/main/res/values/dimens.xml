@@ -32,8 +32,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="imageSizeBadge">60dp</dimen>
-    <dimen name="imageSizeBadgeGrid">90dp</dimen>
+    <dimen name="imageSizeBadge">80dp</dimen>
+    <dimen name="imageSizeBadgeGrid">120dp</dimen>
     <dimen name="textSizeBadge">18sp</dimen>
     <dimen name="textSizeBadgeGrid">12sp</dimen>
 

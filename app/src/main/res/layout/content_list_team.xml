@@ -19,33 +19,34 @@
  * 
  -->
 
-<androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_margin="@dimen/small"
-        android:layout_height="wrap_content">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginBottom="16dp">
+
     <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
 
         <ImageView
-                android:id="@id/imageview_team_list_badge"
-                android:layout_width="@dimen/imageSizeBadge"
-                android:layout_height="@dimen/imageSizeBadge"
-                tools:src="@mipmap/ic_launcher"/>
+            android:id="@id/imageview_team_list_badge"
+            android:layout_width="@dimen/imageSizeBadge"
+            android:layout_height="@dimen/imageSizeBadge"
+            tools:src="@mipmap/ic_launcher" />
 
         <TextView
-                android:id="@id/textview_team_list_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="@string/favorite"
-                android:textColor="@color/textBlack"
-                android:textSize="@dimen/textSizeBadge"
-                android:layout_marginLeft="@dimen/small"
-                android:layout_gravity="center_vertical"/>
+            android:id="@id/textview_team_list_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/small"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/textSizeBadge"
+            tools:text="@string/favorite" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
