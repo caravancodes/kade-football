@@ -8,7 +8,7 @@
 
 | UI 1 | UI 2 | UI 3 |
 |:----:|:----:|:----:|
-|<img width="200px" height="360px" src="docs/image/main_1.png"> | <img width="200px" height="360px" src="docs/image/main_2.png"> | <img width="200px" height="360px" src="docs/image/main_3.png"> |
+|<img width="200px" height="360px" src="docs/image/ss_1.png"> | <img width="200px" height="360px" src="docs/image/ss_2.png"> | <img width="200px" height="360px" src="docs/image/ss_3.png"> |
 
 ## Certificate
 ![ScreenShoot Apps](docs/image/ss_kade.png?raw=true)
