@@ -1,14 +1,14 @@
 package id.frogobox.footballapps.views.activities
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import id.frogobox.footballapps.R
 import id.frogobox.footballapps.helpers.coroutines.TestContextProvider
@@ -20,31 +20,30 @@ import id.frogobox.footballapps.presenters.SearchMatchPresenter
 import id.frogobox.footballapps.views.adapters.MatchRecyclerViewAdapter
 import id.frogobox.footballapps.views.interfaces.SearchMatchView
 import kotlinx.android.synthetic.main.activity_match_search.*
-import org.jetbrains.anko.sdk27.coroutines.onClick
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.support.v4.onRefresh
 
 class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
 
     private var match: MutableList<Match> = mutableListOf()
     private lateinit var presenter: SearchMatchPresenter
     private lateinit var adapter: MatchRecyclerViewAdapter
-    // -----------------------------------------------------------------------------------------------------------------
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_search)
-        // -------------------------------------------------------------------------------------------------------------
-        recyclerview_searchmatch.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+
+        recyclerview_searchmatch.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(this)
         textview_searchmatch_null.invisible()
-        // -------------------------------------------------------------------------------------------------------------
+
         val request = ApiRepository()
         val gson = Gson()
         presenter = SearchMatchPresenter(this, request, gson, TestContextProvider())
-        // -------------------------------------------------------------------------------------------------------------
+
 
         edittext_searchmatch.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                if (edittext_searchmatch.text.isNotEmpty()){
+                if (edittext_searchmatch.text.isNotEmpty()) {
                     swiperefresh_searchmatch.isRefreshing = true
                     presenter.getSearchMatchesList(edittext_searchmatch.text.toString())
                 }
@@ -57,33 +56,36 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
             }
         })
 
-        adapter = MatchRecyclerViewAdapter(this, match){
-            startActivity<DetailMatchActivity>(DetailMatchActivity.STRING_EXTRA_MATCH to it)
+        adapter = MatchRecyclerViewAdapter(this, match) {
+            val intent = Intent(this, DetailMatchActivity::class.java)
+            intent.putExtra(DetailMatchActivity.STRING_EXTRA_MATCH, it)
+            startActivity(intent)
         }
         recyclerview_searchmatch.adapter = adapter
 
-        // -------------------------------------------------------------------------------------------------------------
-        iv_back.onClick {
+
+        iv_back.setOnClickListener {
             onBackPressed()
         }
-        iv_close.onClick {
+        iv_close.setOnClickListener {
             edittext_searchmatch.text.clear()
             recyclerview_searchmatch.invisible()
             textview_searchmatch_null.visible()
         }
-        // -------------------------------------------------------------------------------------------------------------
-        swiperefresh_searchmatch.onRefresh {
+
+        swiperefresh_searchmatch.setOnRefreshListener {
             swiperefresh_searchmatch.isRefreshing = false
         }
-        // -------------------------------------------------------------------------------------------------------------
+
         checkConnection()
     }
 
     private fun checkConnection() {
-        val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
         val isConnected: Boolean = activeNetwork?.isConnected == true
-        if (!isConnected){
+        if (!isConnected) {
             Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show()
             swiperefresh_searchmatch.isRefreshing = false
         }

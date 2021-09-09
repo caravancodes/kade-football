@@ -5,11 +5,6 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.*
 import android.widget.*
 import com.google.gson.Gson
@@ -26,9 +21,6 @@ import id.frogobox.footballapps.views.activities.SearchTeamActivity
 import id.frogobox.footballapps.views.adapters.TeamRecyclerViewAdapter
 import id.frogobox.footballapps.views.interfaces.TeamView
 import kotlinx.android.synthetic.main.fragment_team_home.view.*
-import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.runOnUiThread
-import org.jetbrains.anko.support.v4.startActivity
 
 
 class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamView {
@@ -48,26 +40,26 @@ class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamView {
     ): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_team_home, container, false)
-        // -------------------------------------------------------------------------------------------------------------
+
         val request = ApiRepository()
         val gson = Gson()
         val mLayoutManager = androidx.recyclerview.widget.GridLayoutManager(activity, 3)
         val divider = androidx.recyclerview.widget.DividerItemDecoration(context, mLayoutManager.orientation)
         setHasOptionsMenu(true)
-        // -------------------------------------------------------------------------------------------------------------
+
         progressBar = rootView.progressBar_team
         recyclerView = rootView.recyclerView_team
         swipeRefresh = rootView.swipeRefresh_team
         spinner = rootView.spinner_team
-        // -------------------------------------------------------------------------------------------------------------
+
         val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
         val connected: Boolean = activeNetwork?.isConnected == true
-        // -------------------------------------------------------------------------------------------------------------
+
         if (connected) {
             presenter = TeamPresenter(this, request, gson,TestContextProvider())
             val spinnerItems = resources.getStringArray(league)
-            // ---------------------------------------------------------------------------------------------------------
+
             val spinnerAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, spinnerItems)
             spinner.adapter = spinnerAdapter
             spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -83,14 +75,16 @@ class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamView {
             Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show()
         }
         adapter = TeamRecyclerViewAdapter(context, teams) {
-            startActivity<DetailTeamActivity>(DetailTeamActivity.STRING_EXTRA_TEAM to it)
+            val intent = Intent(requireContext(), DetailTeamActivity::class.java)
+            intent.putExtra(DetailTeamActivity.STRING_EXTRA_TEAM, it)
+            startActivity(intent)
         }
-        // -------------------------------------------------------------------------------------------------------------
+
         recyclerView.adapter = adapter
         recyclerView.layoutManager = mLayoutManager
         recyclerView.addItemDecoration(divider)
-        // -------------------------------------------------------------------------------------------------------------
-        swipeRefresh.onRefresh {
+
+        swipeRefresh.setOnRefreshListener {
             progressBar.invisible()
             if (connected) {
                 presenter.getTeamList(leagueNameAPI)
@@ -98,13 +92,8 @@ class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamView {
                 Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show()
             }
         }
-        // -------------------------------------------------------------------------------------------------------------
-        return rootView
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_search, menu)
-        super.onCreateOptionsMenu(menu, inflater)
+        return rootView
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -119,19 +108,19 @@ class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamView {
     }
 
     override fun showLoading() {
-        runOnUiThread {
+        requireActivity().runOnUiThread {
             progressBar.visible()
         }
     }
 
     override fun hideLoading() {
-        runOnUiThread {
+        requireActivity().runOnUiThread {
             progressBar.invisible()
         }
     }
 
     override fun showData(dataTeam: List<Team>) {
-        runOnUiThread {
+        requireActivity().runOnUiThread {
             adapter.notifyDataSetChanged()
             swipeRefresh.isRefreshing = false
             teams.clear()

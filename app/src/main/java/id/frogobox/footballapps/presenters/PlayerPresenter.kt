@@ -6,6 +6,7 @@ import id.frogobox.footballapps.helpers.networks.ApiRepository
 import id.frogobox.footballapps.helpers.networks.TheSportDBApi
 import id.frogobox.footballapps.helpers.response.PlayerResponse
 import id.frogobox.footballapps.views.interfaces.PlayerView
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -31,6 +32,7 @@ class PlayerPresenter (private val view: PlayerView,
                      private val gson: Gson,
                      private val context: CoroutineContextProvider = CoroutineContextProvider()) {
 
+    @DelicateCoroutinesApi
     fun getPlayerList(teamID: String?){
         try {
             GlobalScope.launch(context.main) {

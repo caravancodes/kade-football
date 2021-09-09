@@ -29,26 +29,25 @@ import id.frogobox.footballapps.presenters.DetailMatchPresenter
 import id.frogobox.footballapps.presenters.FavoriteDetailMatchPresenter
 import id.frogobox.footballapps.views.interfaces.DetailMatchView
 import kotlinx.android.synthetic.main.activity_match_detail.*
-import org.jetbrains.anko.support.v4.onRefresh
 
 class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
     private var matches: MutableList<Match> = mutableListOf()
     private var homeTeams: MutableList<Team> = mutableListOf()
     private var awayTeams: MutableList<Team> = mutableListOf()
-    // ---------------------------------------------------------------------------------------------
+
     private lateinit var presenter: DetailMatchPresenter
     private lateinit var crudPresenterDetail: FavoriteDetailMatchPresenter
     private var activeNetwork: NetworkInfo? = null
-    // ---------------------------------------------------------------------------------------------
+
     private var id: String? = null
     private var menuItem: Menu? = null
-    // ---------------------------------------------------------------------------------------------
+
     companion object {
         const val STRING_EXTRA_MATCH = "string_extra_match"
         const val STRING_EXTRA_FAVORITE = "string_extra_fav"
     }
-    // ---------------------------------------------------------------------------------------------
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,35 +55,35 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Event Detail"
-        // -----------------------------------------------------------------------------------------
+
         val request = ApiRepository()
         val gson = Gson()
-        // -----------------------------------------------------------------------------------------
+
         val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         activeNetwork = connectivityManager.activeNetworkInfo
         crudPresenterDetail = FavoriteDetailMatchPresenter(this, matches, swipeRefresh)
-        // -----------------------------------------------------------------------------------------
+
         showDetailData(request, gson)
-        // -----------------------------------------------------------------------------------------
-        swipeRefresh.onRefresh {
+
+        swipeRefresh.setOnRefreshListener {
             progressBarDetail.invisible()
             showDetailData(request, gson)
         }
-        // -----------------------------------------------------------------------------------------
+
 
     }
 
     private fun showDetailData(request: ApiRepository, gson: Gson) {
         val connected: Boolean = activeNetwork?.isConnected == true
         if (intent.hasExtra(STRING_EXTRA_MATCH)){
-            // -------------------------------------------------------------------------------------
-            val dataMatch = intent.getParcelableExtra<Match>(STRING_EXTRA_MATCH)
+
+            val dataMatch = intent.getParcelableExtra<Match>(STRING_EXTRA_MATCH)!!
             val eventMatchID = dataMatch.eventId
             val teamHomeMatchID = dataMatch.homeTeamId
             val teamAwayMatchID = dataMatch.awayTeamId
             id = eventMatchID
             crudPresenterDetail.favoriteState(eventMatchID)
-            // -------------------------------------------------------------------------------------
+
             if (connected) {
                 presenter = DetailMatchPresenter(
                     this, request, gson,
@@ -94,17 +93,17 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
             } else {
                 Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show()
             }
-            // -------------------------------------------------------------------------------------
+
         } else {
-            // -------------------------------------------------------------------------------------
-            val dataFavorite = intent.getParcelableExtra<FavoriteMatch>(STRING_EXTRA_FAVORITE)
+
+            val dataFavorite = intent.getParcelableExtra<FavoriteMatch>(STRING_EXTRA_FAVORITE)!!
             val eventFavoriteID = dataFavorite.eventId
             val teamHomeFavoriteID = dataFavorite.homeTeamId
             val teamAwayFavoriteID = dataFavorite.awayTeamId
-            // -------------------------------------------------------------------------------------
+
             id = eventFavoriteID
             crudPresenterDetail.favoriteState(eventFavoriteID)
-            // -------------------------------------------------------------------------------------
+
             if (connected) {
                 presenter = DetailMatchPresenter(this, request, gson,
                     TestContextProvider()
@@ -113,7 +112,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
             } else {
                 Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show()
             }
-            // -------------------------------------------------------------------------------------
+
         }
     }
 
@@ -122,7 +121,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
             textview_detail_match_date.text = matches[i].dateMatch?.formatDateToMatch()
             textview_detail_match_time.text = matches[i].timeMatch?.formatTimeToMatch()
-            // -------------------------------------------------------------------------------------
+
             Picasso.get().load(homeTeams[i].teamBadge).into(textview_detail_match_home_image)
             textview_detail_match_home_team.text = matches[i].homeTeam
             textview_detail_match_home_score.text = matches[i].homeScore
@@ -134,7 +133,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
             textview_detail_match_home_midfield.text = matches[i].homeMidfield
             textview_detail_match_home_forward.text = matches[i].homeForward
             textview_detail_match_home_substitute.text = matches[i].homeSubstitutes
-            // -------------------------------------------------------------------------------------
+
             Picasso.get().load(awayTeams[i].teamBadge).into(textview_detail_match_away_image)
             textview_detail_match_away_team.text = matches[i].awayTeam
             textview_detail_match_away_score.text = matches[i].awayScore
@@ -203,11 +202,11 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
             awayTeams.clear()
             matches.clear()
             swipeRefresh.isRefreshing = false
-            // -------------------------------------------------------------------------------------
+
             homeTeams.addAll(dataHomeTeam)
             awayTeams.addAll(dataAwayTeam)
             matches.addAll(dataMatch)
-            // -------------------------------------------------------------------------------------
+
             initData()
             supportActionBar?.show()
         }

@@ -1,7 +1,6 @@
 package id.frogobox.footballapps.views.activities
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import id.frogobox.footballapps.R
 import id.frogobox.footballapps.presenters.MainPresenter
@@ -17,20 +16,20 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // -------------------------------------------------------------------------------------------------------------
+
         initPresenter()
         onAttachView(savedInstanceState)
-        // -------------------------------------------------------------------------------------------------------------
+
     }
 
     private fun bottomNavigationHandler(savedInstanceState: Bundle?) {
         navigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigation_match -> {
-                    presenter?.showFragment(MatchHomeFragment(),savedInstanceState)
-                }
+//                R.id.navigation_match -> {
+//                    presenter?.showFragment(MatchHomeFragment(), savedInstanceState)
+//                }
                 R.id.navigation_team -> {
-                    presenter?.showFragment(TeamHomeFragment(),savedInstanceState)
+                    presenter?.showFragment(TeamHomeFragment(), savedInstanceState)
                 }
                 R.id.navigation_favorite -> {
                     presenter?.showFragment(FavoriteHomeFragment(), savedInstanceState)
@@ -38,14 +37,17 @@ class MainActivity : AppCompatActivity(), MainView {
             }
             true
         }
-        navigation.selectedItemId = R.id.navigation_match
+        navigation.selectedItemId = R.id.navigation_team
     }
 
     private fun initPresenter() {
         presenter = MainPresenter()
     }
 
-    override fun onShowFragment(mFragment: androidx.fragment.app.Fragment, savedInstanceState: Bundle?) {
+    override fun onShowFragment(
+        mFragment: androidx.fragment.app.Fragment,
+        savedInstanceState: Bundle?
+    ) {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()

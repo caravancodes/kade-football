@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="id.frogobox.footballapps">
+    package="id.frogobox.footballapps">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher_logo"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_logo"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
-        <activity android:name=".views.activities.MainActivity">
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".views.activities.MainActivity"
+            android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.activities.DetailTeamActivity">
-        </activity>
-        <activity android:name=".views.activities.DetailMatchActivity">
-        </activity>
-        <activity android:name=".views.activities.DetailPlayerActivity">
-        </activity>
-        <activity android:name=".views.activities.SearchMatchActivity"
-                  android:theme="@style/AppThemeNoBar">
-        </activity>
-        <activity android:name=".views.activities.SearchTeamActivity"
-                  android:theme="@style/AppThemeNoBar">
-        </activity>
+        <activity android:name=".views.activities.DetailTeamActivity"/>
+        <activity android:name=".views.activities.DetailMatchActivity"/>
+        <activity android:name=".views.activities.DetailPlayerActivity"/>
+        <activity
+            android:name=".views.activities.SearchMatchActivity"
+            android:theme="@style/AppThemeNoBar"/>
+        <activity
+            android:name=".views.activities.SearchTeamActivity"
+            android:theme="@style/AppThemeNoBar"/>
     </application>
 
 </manifest>

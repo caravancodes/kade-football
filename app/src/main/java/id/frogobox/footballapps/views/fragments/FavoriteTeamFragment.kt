@@ -1,5 +1,6 @@
 package id.frogobox.footballapps.views.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +10,10 @@ import android.widget.ProgressBar
 import id.frogobox.footballapps.R
 import id.frogobox.footballapps.models.dataclass.FavoriteTeam
 import id.frogobox.footballapps.presenters.FavoriteListTeamPresenter
+import id.frogobox.footballapps.views.activities.DetailMatchActivity
 import id.frogobox.footballapps.views.activities.DetailTeamActivity
 import id.frogobox.footballapps.views.adapters.FavoriteTeamRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_favorite_team.view.*
-import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.startActivity
 
 class FavoriteTeamFragment : androidx.fragment.app.Fragment() {
 
@@ -32,22 +32,24 @@ class FavoriteTeamFragment : androidx.fragment.app.Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_favorite_team, container, false)
         val mLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         val divider = androidx.recyclerview.widget.DividerItemDecoration(context, mLayoutManager.orientation)
-        // -----------------------------------------------------------------------------------------
+
         progressBar = rootView.progressBar_teamFav
         recyclerView = rootView.recyclerView_teamFav
         swipeRefresh = rootView.swipeRefresh_teamFav
-        // -----------------------------------------------------------------------------------------
+
         adapter = FavoriteTeamRecyclerViewAdapter(context, favorites) {
-            startActivity<DetailTeamActivity>(DetailTeamActivity.STRING_EXTRA_FAVORITE to it)
+            val intent = Intent(requireContext(), DetailTeamActivity::class.java)
+            intent.putExtra(DetailTeamActivity.STRING_EXTRA_FAVORITE, it)
+            startActivity(intent)
         }
-        // -----------------------------------------------------------------------------------------
+
         presenter = FavoriteListTeamPresenter(context, favorites, progressBar, swipeRefresh, adapter)
-        // -----------------------------------------------------------------------------------------
+
         recyclerView.adapter = adapter
         recyclerView.layoutManager = mLayoutManager
         recyclerView.addItemDecoration(divider)
-        // -----------------------------------------------------------------------------------------
-        swipeRefresh.onRefresh {
+
+        swipeRefresh.setOnRefreshListener {
             presenter.showFavorite()
         }
         return rootView

@@ -10,19 +10,19 @@ import kotlinx.android.synthetic.main.activity_player_detail.*
 
 class DetailPlayerActivity : AppCompatActivity() {
 
-    // ---------------------------------------------------------------------------------------------
+
     companion object {
         const val STRING_EXTRA_PLAYER = "string_extra_player"
     }
-    // ---------------------------------------------------------------------------------------------
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player_detail)
-        // ---------------------------------------------------------------------------------------------
-        if (intent.hasExtra(DetailPlayerActivity.STRING_EXTRA_PLAYER)) {
-            // -------------------------------------------------------------------------------------
-            val dataPlayer = intent.getParcelableExtra<Player>(DetailPlayerActivity.STRING_EXTRA_PLAYER)
+
+        if (intent.hasExtra(STRING_EXTRA_PLAYER)) {
+
+            val dataPlayer = intent.getParcelableExtra<Player>(STRING_EXTRA_PLAYER)!!
             val playerName = dataPlayer.playerName
             val playerPoster = dataPlayer.playerPoster
             val playerHeight = dataPlayer.playerHeight
@@ -37,7 +37,7 @@ class DetailPlayerActivity : AppCompatActivity() {
             Picasso.get().load(playerPoster).into(imageview_detail_player_poster)
             supportActionBar?.title = playerName
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            // -------------------------------------------------------------------------------------
+
         }
     }
 

@@ -18,9 +18,9 @@ class TeamOverviewFragment : androidx.fragment.app.Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_team_overview, container, false)
-        // -----------------------------------------------------------------------------------------
+
         rootView.textview_team_overview.text = BundleHelper.teamOverviewHelper
-        // -----------------------------------------------------------------------------------------
+
         return rootView
     }
 

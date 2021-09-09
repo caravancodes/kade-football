@@ -2,6 +2,7 @@ package id.frogobox.footballapps.views.fragments
 
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
@@ -27,8 +28,6 @@ import id.frogobox.footballapps.views.activities.DetailPlayerActivity
 import id.frogobox.footballapps.views.adapters.PlayerRecyclerViewAdapter
 import id.frogobox.footballapps.views.interfaces.PlayerView
 import kotlinx.android.synthetic.main.fragment_team_player.view.*
-import org.jetbrains.anko.support.v4.runOnUiThread
-import org.jetbrains.anko.support.v4.startActivity
 
 
 class TeamPlayerFragment : androidx.fragment.app.Fragment(), PlayerView {
@@ -44,20 +43,20 @@ class TeamPlayerFragment : androidx.fragment.app.Fragment(), PlayerView {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        // -----------------------------------------------------------------------------------------
+
         val rootView = inflater.inflate(R.layout.fragment_team_player, container, false)
         val request = ApiRepository()
         val gson = Gson()
         val mLayoutManager = androidx.recyclerview.widget.GridLayoutManager(activity, 3)
         val divider = androidx.recyclerview.widget.DividerItemDecoration(context, mLayoutManager.orientation)
-        // -----------------------------------------------------------------------------------------
+
         progressBar = rootView.progressBar_player
         recyclerView = rootView.recyclerView_player
-        // -----------------------------------------------------------------------------------------
+
         val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
         val connected: Boolean = activeNetwork?.isConnected == true
-        // -----------------------------------------------------------------------------------------
+
         if (connected) {
             presenter = PlayerPresenter(this, request, gson, TestContextProvider())
             presenter.getPlayerList(BundleHelper.teamIdHelper)
@@ -65,31 +64,33 @@ class TeamPlayerFragment : androidx.fragment.app.Fragment(), PlayerView {
             Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show()
         }
         adapter = PlayerRecyclerViewAdapter(context, players){
-            startActivity<DetailPlayerActivity>(DetailPlayerActivity.STRING_EXTRA_PLAYER to it)
+            val intent = Intent(requireContext(), DetailPlayerActivity::class.java)
+            intent.putExtra(DetailPlayerActivity.STRING_EXTRA_PLAYER, it)
+            startActivity(intent)
         }
-        // -----------------------------------------------------------------------------------------
+
         recyclerView.adapter = adapter
         recyclerView.layoutManager = mLayoutManager
         recyclerView.addItemDecoration(divider)
-        // -----------------------------------------------------------------------------------------
+
         return rootView
 
     }
 
     override fun showLoading() {
-        runOnUiThread {
+        requireActivity().runOnUiThread {
             progressBar.visible()
         }
     }
 
     override fun hideLoading() {
-        runOnUiThread {
+        requireActivity().runOnUiThread {
             progressBar.invisible()
         }
     }
 
     override fun showData(dataPlayer: List<Player>) {
-        runOnUiThread {
+        requireActivity().runOnUiThread {
             players.clear()
             players.addAll(dataPlayer)
             adapter.notifyDataSetChanged()

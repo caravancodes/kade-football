@@ -2,6 +2,7 @@ package id.frogobox.footballapps.models.databases
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
 import id.frogobox.footballapps.models.dataclass.FavoriteMatch
 import id.frogobox.footballapps.models.dataclass.FavoriteTeam
 import org.jetbrains.anko.db.*

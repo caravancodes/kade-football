@@ -1,11 +1,11 @@
 package id.frogobox.footballapps.views.activities
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
@@ -20,27 +20,23 @@ import id.frogobox.footballapps.presenters.SearchTeamPresenter
 import id.frogobox.footballapps.views.adapters.TeamRecyclerViewAdapter
 import id.frogobox.footballapps.views.interfaces.SearchTeamView
 import kotlinx.android.synthetic.main.activity_team_search.*
-import org.jetbrains.anko.sdk27.coroutines.onClick
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.support.v4.onRefresh
-
 class SearchTeamActivity : AppCompatActivity(), SearchTeamView {
 
     private var team: MutableList<Team> = mutableListOf()
     private lateinit var presenter: SearchTeamPresenter
     private lateinit var adapter: TeamRecyclerViewAdapter
-    // -----------------------------------------------------------------------------------------------------------------
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_team_search)
-        // -------------------------------------------------------------------------------------------------------------
+
         recyclerview_searchteam.layoutManager = androidx.recyclerview.widget.GridLayoutManager(this, 3)
         textview_searchteam_null.invisible()
-        // -------------------------------------------------------------------------------------------------------------
+
         val request = ApiRepository()
         val gson = Gson()
         presenter = SearchTeamPresenter(this, request, gson, TestContextProvider())
-        // -------------------------------------------------------------------------------------------------------------
+
         edittext_searchteam.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 if (edittext_searchteam.text.isNotEmpty()){
@@ -57,25 +53,27 @@ class SearchTeamActivity : AppCompatActivity(), SearchTeamView {
         })
 
         adapter = TeamRecyclerViewAdapter(this, team){
-            startActivity<DetailTeamActivity>(DetailTeamActivity.STRING_EXTRA_TEAM to it)
+            val intent = Intent(this@SearchTeamActivity, DetailTeamActivity::class.java)
+            intent.putExtra(DetailTeamActivity.STRING_EXTRA_TEAM, it)
+            startActivity(intent)
         }
         recyclerview_searchteam.adapter = adapter
 
-        // -------------------------------------------------------------------------------------------------------------
-        cardview_searchteam_back.onClick {
+
+        cardview_searchteam_back.setOnClickListener {
             onBackPressed()
         }
-        // -------------------------------------------------------------------------------------------------------------
-        cardview_searchteam_remove.onClick {
+
+        cardview_searchteam_remove.setOnClickListener {
             edittext_searchteam.text.clear()
             recyclerview_searchteam.invisible()
             textview_searchteam_null.visible()
         }
-        // -------------------------------------------------------------------------------------------------------------
-        swiperefresh_searchteam.onRefresh {
+
+        swiperefresh_searchteam.setOnRefreshListener {
             swiperefresh_searchteam.isRefreshing = false
         }
-        // -------------------------------------------------------------------------------------------------------------
+
         checkConnection()
     }
 

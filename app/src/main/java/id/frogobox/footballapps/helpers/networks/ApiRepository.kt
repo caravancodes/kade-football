@@ -1,6 +1,7 @@
 package id.frogobox.footballapps.helpers.networks
 
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import java.net.URL
@@ -23,6 +24,7 @@ import java.net.URL
  * id.amirisback.frogobox
  */
 class ApiRepository {
+    @DelicateCoroutinesApi
     fun doRequest(url: String): Deferred<String> = GlobalScope.async {
         URL(url).readText()
     }

@@ -2,6 +2,7 @@ package id.frogobox.footballapps.views.fragments
 
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
@@ -24,12 +25,10 @@ import id.frogobox.footballapps.helpers.utils.visible
 import id.frogobox.footballapps.models.dataclass.Match
 import id.frogobox.footballapps.presenters.MatchPresenter
 import id.frogobox.footballapps.views.activities.DetailMatchActivity
+import id.frogobox.footballapps.views.activities.DetailPlayerActivity
 import id.frogobox.footballapps.views.adapters.MatchRecyclerViewAdapter
 import id.frogobox.footballapps.views.interfaces.MatchView
 import kotlinx.android.synthetic.main.fragment_match_next.view.*
-import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.runOnUiThread
-import org.jetbrains.anko.support.v4.startActivity
 
 class MatchNextFragment : androidx.fragment.app.Fragment(), MatchView {
 
@@ -46,27 +45,27 @@ class MatchNextFragment : androidx.fragment.app.Fragment(), MatchView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        // -----------------------------------------------------------------------------------------
+
         val rootView = inflater.inflate(R.layout.fragment_match_next, container, false)
         val request = ApiRepository()
         val gson = Gson()
         val mLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
         val divider = androidx.recyclerview.widget.DividerItemDecoration(context, mLayoutManager.orientation)
         val api = "eventsnextleague.php"
-        // -----------------------------------------------------------------------------------------
+
         progressBar = rootView.progressBar_NextMatch
         recyclerView = rootView.recyclerView_NextMatch
         swipeRefresh = rootView.swipeRefresh_NextMatch
         spinner = rootView.spinner_NextMatch
-        // -----------------------------------------------------------------------------------------
+
         val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
         val connected: Boolean = activeNetwork?.isConnected == true
-        // -----------------------------------------------------------------------------------------
+
         if (connected) {
             presenter = MatchPresenter(this, request, gson, TestContextProvider())
             val spinnerItems = resources.getStringArray(league)
-            // ---------------------------------------------------------------------------------------------------------
+
             val spinnerAdapter = ArrayAdapter(requireContext(), R.layout.support_simple_spinner_dropdown_item, spinnerItems)
             spinner.adapter = spinnerAdapter
             spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -89,14 +88,16 @@ class MatchNextFragment : androidx.fragment.app.Fragment(), MatchView {
             Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show()
         }
         adapter = MatchRecyclerViewAdapter(context, matches){
-            startActivity<DetailMatchActivity>(DetailMatchActivity.STRING_EXTRA_MATCH to it)
+            val intent = Intent(requireContext(), DetailMatchActivity::class.java)
+            intent.putExtra(DetailMatchActivity.STRING_EXTRA_MATCH, it)
+            startActivity(intent)
         }
-        // -----------------------------------------------------------------------------------------
+
         recyclerView.adapter = adapter
         recyclerView.layoutManager = mLayoutManager
         recyclerView.addItemDecoration(divider)
-        // -----------------------------------------------------------------------------------------
-        swipeRefresh.onRefresh {
+
+        swipeRefresh.setOnRefreshListener {
             progressBar.invisible()
             if (connected) {
                 presenter = MatchPresenter(this, request, gson, TestContextProvider())
@@ -110,19 +111,19 @@ class MatchNextFragment : androidx.fragment.app.Fragment(), MatchView {
     }
 
     override fun showLoading() {
-        runOnUiThread {
+        requireActivity().runOnUiThread {
             progressBar.visible()
         }
     }
 
     override fun hideLoading() {
-        runOnUiThread {
+        requireActivity().runOnUiThread {
             progressBar.invisible()
         }
     }
 
     override fun showData(dataMatch: List<Match>) {
-        runOnUiThread {
+        requireActivity().runOnUiThread {
             adapter.notifyDataSetChanged()
             swipeRefresh.isRefreshing = false
             matches.clear()
