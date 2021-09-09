@@ -11,7 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import id.frogobox.footballapps.R.id.*
-import id.frogobox.footballapps.views.activities.MainActivity
+import id.frogobox.footballapps.mvp.main.MainActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
