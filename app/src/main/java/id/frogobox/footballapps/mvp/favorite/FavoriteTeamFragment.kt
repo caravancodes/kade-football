@@ -6,16 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
 
 import id.frogobox.footballapps.R
 import id.frogobox.footballapps.models.FavoriteTeam
-import id.frogobox.footballapps.mvp.detail.DetailTeamActivity
+import id.frogobox.footballapps.mvp.team.TeamDetailActivity
 import kotlinx.android.synthetic.main.fragment_favorite_team.view.*
 
-class FavoriteTeamFragment : androidx.fragment.app.Fragment() {
+class FavoriteTeamFragment : Fragment() {
 
     private var favorites: MutableList<FavoriteTeam> = mutableListOf()
-    private lateinit var adapter: FavoriteTeamRecyclerViewAdapter
+    private lateinit var adapter: FavoriteTeamAdapter
     private lateinit var presenter: FavoriteTeamPresenter
     private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
     private lateinit var progressBar: ProgressBar
@@ -33,9 +34,9 @@ class FavoriteTeamFragment : androidx.fragment.app.Fragment() {
         recyclerView = rootView.recyclerView_teamFav
         swipeRefresh = rootView.swipeRefresh_teamFav
 
-        adapter = FavoriteTeamRecyclerViewAdapter(context, favorites) {
-            val intent = Intent(requireContext(), DetailTeamActivity::class.java)
-            intent.putExtra(DetailTeamActivity.STRING_EXTRA_FAVORITE, it)
+        adapter = FavoriteTeamAdapter(favorites) {
+            val intent = Intent(requireContext(), TeamDetailActivity::class.java)
+            intent.putExtra(TeamDetailActivity.STRING_EXTRA_FAVORITE, it)
             startActivity(intent)
         }
 

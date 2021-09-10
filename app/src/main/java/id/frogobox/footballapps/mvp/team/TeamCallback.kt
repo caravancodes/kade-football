@@ -1,26 +1,20 @@
 package id.frogobox.footballapps.mvp.team
 
-import id.frogobox.footballapps.models.Team
-
-/**
- * Created by Faisal Amir
- * FrogoBox Inc License
- * =========================================
- * FootBallApps
- * Copyright (C) 03/12/2018.
- * All rights reserved
+/*
+ * Created by faisalamir on 10/09/21
+ * caravan-kade-football
  * -----------------------------------------
  * Name     : Muhammad Faisal Amir
  * E-mail   : faisalamircs@gmail.com
- * Line     : bullbee117
- * Phone    : 081357108568
- * Majors   : D3 Teknik Informatika 2016
- * Campus   : Telkom University
+ * Github   : github.com/amirisback
  * -----------------------------------------
- * id.amirisback.frogobox
+ * Copyright (C) 2021 FrogoBox Inc.      
+ * All rights reserved
+ *
  */
-interface TeamCallback {
+interface TeamCallback<T> {
+    fun onResult(data: List<T>)
+    fun onFailed(message: String)
     fun showLoading()
     fun hideLoading()
-    fun showData(dataTeam: List<Team>)
 }

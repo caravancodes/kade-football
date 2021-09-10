@@ -1,10 +1,9 @@
 package id.frogobox.footballapps.mvp.favorite
 
-import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import id.frogobox.footballapps.R
 import id.frogobox.footballapps.models.FavoriteTeam
@@ -27,11 +26,15 @@ import kotlinx.android.synthetic.main.content_list_team.view.*
  * -----------------------------------------
  * id.amirisback.frogobox
  */
-class FavoriteTeamRecyclerViewAdapter (private val context: Context?, private val teams: List<FavoriteTeam>, private var listener :
-    (FavoriteTeam) -> Unit) : RecyclerView.Adapter<FavoriteTeamRecyclerViewAdapter.ViewHolder>() {
+class FavoriteTeamAdapter(
+    private val teams: List<FavoriteTeam>,
+    private var listener: (FavoriteTeam) -> Unit
+) : RecyclerView.Adapter<FavoriteTeamAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(LayoutInflater.from(context).inflate(R.layout.content_list_team, parent, false))
+        ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.content_list_team, parent, false)
+        )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(teams[position], listener)
@@ -39,7 +42,7 @@ class FavoriteTeamRecyclerViewAdapter (private val context: Context?, private va
 
     override fun getItemCount(): Int = teams.size
 
-    class ViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val imageFavoriteTeam = view.imageview_team_list_badge
         private val textFavoriteTeam = view.textview_team_list_name

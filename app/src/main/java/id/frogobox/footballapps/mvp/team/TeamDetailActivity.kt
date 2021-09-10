@@ -1,4 +1,4 @@
-package id.frogobox.footballapps.mvp.detail
+package id.frogobox.footballapps.mvp.team
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -9,35 +9,28 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import id.frogobox.footballapps.R
 import id.frogobox.footballapps.R.drawable.ic_add_to_favorites
 import id.frogobox.footballapps.R.drawable.ic_added_to_favorites
-import id.frogobox.footballapps.utils.TestContextProvider
-import id.frogobox.footballapps.sources.ApiRepository
-import id.frogobox.footballapps.utils.BundleHelper.teamIdHelper
-import id.frogobox.footballapps.utils.BundleHelper.teamOverviewHelper
-import id.frogobox.footballapps.utils.invisible
-import id.frogobox.footballapps.utils.visible
 import id.frogobox.footballapps.models.FavoriteTeam
 import id.frogobox.footballapps.models.Team
-import id.frogobox.footballapps.mvp.favorite.FavoriteDetailTeamPresenter
-import id.frogobox.footballapps.mvp.team.TeamOverviewFragment
-import id.frogobox.footballapps.mvp.team.TeamCallback
+import id.frogobox.footballapps.mvp.favorite.FavoriteTeamDetailPresenter
+import id.frogobox.footballapps.utils.BundleHelper.teamIdHelper
+import id.frogobox.footballapps.utils.BundleHelper.teamOverviewHelper
 import id.frogobox.footballapps.utils.PagerAdapter
+import id.frogobox.footballapps.utils.TestContextProvider
+import id.frogobox.footballapps.utils.invisible
+import id.frogobox.footballapps.utils.visible
 import kotlinx.android.synthetic.main.activity_team_detail.*
 
-class DetailTeamActivity : AppCompatActivity(), TeamCallback {
+class TeamDetailActivity : AppCompatActivity(), TeamCallback<Team> {
 
     private var teams: MutableList<Team> = mutableListOf()
 
-
-    private lateinit var presenter: DetailTeamPresenter
-    private lateinit var crudPresenterDetail: FavoriteDetailTeamPresenter
+    private lateinit var presenter: TeamPresenter
+    private lateinit var crudPresenterDetail: FavoriteTeamDetailPresenter
     private var activeNetwork: NetworkInfo? = null
-
-
     private var id: String? = null
     private var menuItem: Menu? = null
 
@@ -63,23 +56,20 @@ class DetailTeamActivity : AppCompatActivity(), TeamCallback {
         viewpager_team.adapter = pagerAdapter
         tablayout_team.setupWithViewPager(viewpager_team)
 
-        val request = ApiRepository()
-        val gson = Gson()
-
         val connectivityManager =
             this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         activeNetwork = connectivityManager.activeNetworkInfo
-        crudPresenterDetail = FavoriteDetailTeamPresenter(this, teams, swipeRefresh_teamDetail)
-        showDetailData(request, gson)
+        crudPresenterDetail = FavoriteTeamDetailPresenter(this, teams, swipeRefresh_teamDetail)
+        showDetailData()
 
         swipeRefresh_teamDetail.setOnRefreshListener {
             progressBar_teamDetail.invisible()
-            showDetailData(request, gson)
+            showDetailData()
         }
 
     }
 
-    private fun showDetailData(request: ApiRepository, gson: Gson) {
+    private fun showDetailData() {
         val connected: Boolean = activeNetwork?.isConnected == true
         if (intent.hasExtra(STRING_EXTRA_TEAM)) {
 
@@ -92,7 +82,7 @@ class DetailTeamActivity : AppCompatActivity(), TeamCallback {
             crudPresenterDetail.favoriteState(teamID)
 
             if (connected) {
-                presenter = DetailTeamPresenter(this, request, gson, TestContextProvider())
+                presenter = TeamPresenter(this, TestContextProvider())
                 presenter.getTeamDetailById(teamID)
             } else {
                 Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show()
@@ -111,7 +101,7 @@ class DetailTeamActivity : AppCompatActivity(), TeamCallback {
             crudPresenterDetail.favoriteState(teamFavoriteID)
 
             if (connected) {
-                presenter = DetailTeamPresenter(this, request, gson, TestContextProvider())
+                presenter = TeamPresenter(this, TestContextProvider())
                 presenter.getTeamDetailById(teamFavoriteID)
             } else {
                 Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show()
@@ -179,13 +169,19 @@ class DetailTeamActivity : AppCompatActivity(), TeamCallback {
         }
     }
 
-    override fun showData(dataTeam: List<Team>) {
+    override fun onResult(data: List<Team>) {
         runOnUiThread {
             swipeRefresh_teamDetail.isRefreshing = false
             teams.clear()
-            teams.addAll(dataTeam)
+            teams.addAll(data)
             initData()
             supportActionBar?.show()
+        }
+    }
+
+    override fun onFailed(message: String) {
+        runOnUiThread {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -2,7 +2,7 @@ package id.frogobox.footballapps
 
 import com.google.gson.Gson
 import id.frogobox.footballapps.sources.ApiRepository
-import id.frogobox.footballapps.sources.TheSportDBApi
+import id.frogobox.footballapps.sources.ApiUrl
 import id.frogobox.footballapps.models.TeamResponse
 import id.frogobox.footballapps.models.Team
 import kotlinx.coroutines.GlobalScope
@@ -62,12 +62,12 @@ class DetailPresenterTest {
         GlobalScope.launch {
 
             Mockito.`when`(gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getTeamDetailById(homeTeamID)).await(),
+                .doRequest(ApiUrl.urlTeamDetailById(homeTeamID)).await(),
                 TeamResponse::class.java
             )).thenReturn(responseHomeTeam)
 
             Mockito.`when`(gson.fromJson(apiRepository
-                .doRequest(TheSportDBApi.getTeamDetailById(awayTeamID)).await(),
+                .doRequest(ApiUrl.urlTeamDetailById(awayTeamID)).await(),
                 TeamResponse::class.java
             )).thenReturn(responseAwayTeam)
         }

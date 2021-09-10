@@ -20,7 +20,7 @@ import android.os.Bundle
  * -----------------------------------------
  * id.amirisback.frogobox
  */
-class MainPresenter : HandlerMainCallback<MainCallback> {
+class MainHandlerPresenter : MainHandlerCallback<MainCallback> {
     private var mCallback: MainCallback? = null
 
     override fun onAttach(callback: MainCallback) {

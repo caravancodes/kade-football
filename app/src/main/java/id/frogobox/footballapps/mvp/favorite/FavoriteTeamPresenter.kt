@@ -2,10 +2,10 @@ package id.frogobox.footballapps.mvp.favorite
 
 import android.content.Context
 import android.widget.ProgressBar
-import id.frogobox.footballapps.utils.invisible
-import id.frogobox.footballapps.sources.database
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import id.frogobox.footballapps.models.FavoriteTeam
-import id.frogobox.footballapps.mvp.favorite.FavoriteTeamRecyclerViewAdapter
+import id.frogobox.footballapps.sources.database
+import id.frogobox.footballapps.utils.invisible
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 
@@ -26,12 +26,13 @@ import org.jetbrains.anko.db.select
  * -----------------------------------------
  * id.amirisback.frogobox
  */
-class FavoriteTeamPresenter(private val context: Context?,
-                            private var favorites: MutableList<FavoriteTeam>,
-                            private val progressBar: ProgressBar,
-                            private val swipeRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout,
-                            private var adapter: FavoriteTeamRecyclerViewAdapter
-){
+class FavoriteTeamPresenter(
+    private val context: Context?,
+    private var favorites: MutableList<FavoriteTeam>,
+    private val progressBar: ProgressBar,
+    private val swipeRefresh: SwipeRefreshLayout,
+    private var adapter: FavoriteTeamAdapter
+) {
 
     fun showFavorite() {
         progressBar.invisible()

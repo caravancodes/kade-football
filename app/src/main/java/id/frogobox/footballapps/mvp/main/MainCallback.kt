@@ -19,6 +19,6 @@ import android.os.Bundle
  * -----------------------------------------
  * id.amirisback.frogobox
  */
-interface MainCallback : FragmentCallback {
+interface MainCallback : MainFragmentCallback {
     fun onShowFragment(mFragment: androidx.fragment.app.Fragment, savedInstanceState: Bundle?)
 }

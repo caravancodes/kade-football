@@ -1,5 +1,3 @@
-![ScreenShoot Apps](https://raw.githubusercontent.com/amirisback/amirisback/master/docs/image/deprecated.png?raw=true)
-
 ## About This Project
 - Final Submission KADE Dicoding 2018
 - Still Using Deprecated Anko

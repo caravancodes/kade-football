@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.detail.DetailTeamActivity" />
+        <activity android:name=".mvp.team.TeamDetailActivity" />
         <activity
-            android:name=".mvp.search.SearchTeamActivity"
+            android:name=".mvp.team.TeamSearchActivity"
             android:theme="@style/AppThemeNoBar" />
     </application>
 

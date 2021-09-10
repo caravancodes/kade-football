@@ -1,7 +1,5 @@
 package id.frogobox.footballapps.models
 
-import id.frogobox.footballapps.models.Team
-
 /**
  * Created by Faisal Amir
  * FrogoBox Inc License
@@ -19,4 +17,6 @@ import id.frogobox.footballapps.models.Team
  * -----------------------------------------
  * id.amirisback.frogobox
  */
-data class TeamResponse (val teams: List<Team>)
+data class TeamResponse(
+    val teams: List<Team>
+)

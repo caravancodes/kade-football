@@ -19,7 +19,7 @@ import android.os.Bundle
  * -----------------------------------------
  * id.amirisback.frogobox
  */
-interface FragmentCallback {
+interface MainFragmentCallback {
     fun onAttachView(savedInstanceState: Bundle?)
     fun onDetachView()
 }

@@ -30,10 +30,11 @@ import org.jetbrains.anko.design.snackbar
  * -----------------------------------------
  * id.amirisback.frogobox
  */
-class FavoriteDetailTeamPresenter(private val context: Context,
-                                  private val teamData: MutableList<Team>,
-                                  private val swipeRefresh_teamDetail: SwipeRefreshLayout
-){
+class FavoriteTeamDetailPresenter(
+    private val context: Context,
+    private val teamData: MutableList<Team>,
+    private val swipeRefresh_teamDetail: SwipeRefreshLayout
+) {
 
     var isFavorite = false
 
@@ -59,7 +60,10 @@ class FavoriteDetailTeamPresenter(private val context: Context,
     fun removeFromFavorite(id: String?) {
         try {
             context.database.use {
-                delete(FavoriteTeam.TABLE_FAVORITE_TEAM, "(" + FavoriteTeam.TEAM_ID + "=" + id + ")")
+                delete(
+                    FavoriteTeam.TABLE_FAVORITE_TEAM,
+                    "(" + FavoriteTeam.TEAM_ID + "=" + id + ")"
+                )
             }
             swipeRefresh_teamDetail.snackbar("Removed to favorite").show()
         } catch (e: SQLiteConstraintException) {
@@ -67,7 +71,7 @@ class FavoriteDetailTeamPresenter(private val context: Context,
         }
     }
 
-   fun favoriteState(id: String?) {
+    fun favoriteState(id: String?) {
         context.database.use {
             val result = select(FavoriteTeam.TABLE_FAVORITE_TEAM)
                 .whereArgs(FavoriteTeam.TEAM_ID + "=" + id)
@@ -77,7 +81,6 @@ class FavoriteDetailTeamPresenter(private val context: Context,
             }
         }
     }
-
 
 
 }

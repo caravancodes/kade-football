@@ -11,48 +11,38 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.gson.Gson
 import id.frogobox.footballapps.R
 import id.frogobox.footballapps.R.array.league
 import id.frogobox.footballapps.models.Team
-import id.frogobox.footballapps.mvp.detail.DetailTeamActivity
-import id.frogobox.footballapps.mvp.search.SearchTeamActivity
-import id.frogobox.footballapps.sources.ApiRepository
 import id.frogobox.footballapps.utils.TestContextProvider
 import id.frogobox.footballapps.utils.invisible
 import id.frogobox.footballapps.utils.visible
-import kotlinx.android.synthetic.main.fragment_team_home.view.*
+import kotlinx.android.synthetic.main.fragment_team_home.*
 import kotlinx.coroutines.DelicateCoroutinesApi
+import org.jetbrains.anko.runOnUiThread
 
 
-class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamCallback {
+class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamCallback<Team> {
 
     private var teams: MutableList<Team> = mutableListOf()
     private lateinit var leagueNameAPI: String
     private lateinit var presenter: TeamPresenter
-    private lateinit var adapter: TeamViewAdapter
-    private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var swipeRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    private lateinit var spinner: Spinner
+    private lateinit var adapter: TeamAdapter
 
-    @DelicateCoroutinesApi
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_team_home, container, false)
+        return inflater.inflate(R.layout.fragment_team_home, container, false)
+    }
 
-        val request = ApiRepository()
-        val gson = Gson()
+    @DelicateCoroutinesApi
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val mLayoutManager = GridLayoutManager(requireContext(), 2)
         setHasOptionsMenu(true)
-
-        progressBar = rootView.progressBar_team
-        recyclerView = rootView.recyclerView_team
-        swipeRefresh = rootView.swipeRefresh_team
-        spinner = rootView.spinner_team
 
         val connectivityManager =
             context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -60,7 +50,7 @@ class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamCallback {
         val connected: Boolean = activeNetwork?.isConnected == true
 
         if (connected) {
-            presenter = TeamPresenter(this, request, gson, TestContextProvider())
+            presenter = TeamPresenter(this, TestContextProvider())
             val spinnerItems = resources.getStringArray(league)
 
             val spinnerAdapter = ArrayAdapter(
@@ -68,15 +58,15 @@ class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamCallback {
                 R.layout.support_simple_spinner_dropdown_item,
                 spinnerItems
             )
-            spinner.adapter = spinnerAdapter
-            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            spinner_team.adapter = spinnerAdapter
+            spinner_team.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>,
                     view: View,
                     position: Int,
                     id: Long
                 ) {
-                    leagueNameAPI = spinner.selectedItem.toString()
+                    leagueNameAPI = spinner_team.selectedItem.toString()
                     presenter.getTeamList(leagueNameAPI)
                 }
 
@@ -86,17 +76,17 @@ class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamCallback {
         } else {
             Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show()
         }
-        adapter = TeamViewAdapter(context, teams) {
-            val intent = Intent(requireContext(), DetailTeamActivity::class.java)
-            intent.putExtra(DetailTeamActivity.STRING_EXTRA_TEAM, it)
+        adapter = TeamAdapter(teams) {
+            val intent = Intent(requireContext(), TeamDetailActivity::class.java)
+            intent.putExtra(TeamDetailActivity.STRING_EXTRA_TEAM, it)
             startActivity(intent)
         }
 
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = mLayoutManager
+        recyclerView_team.adapter = adapter
+        recyclerView_team.layoutManager = mLayoutManager
 
-        swipeRefresh.setOnRefreshListener {
-            progressBar.invisible()
+        swipeRefresh_team.setOnRefreshListener {
+            progressBar_team.invisible()
             if (connected) {
                 presenter.getTeamList(leagueNameAPI)
             } else {
@@ -104,13 +94,12 @@ class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamCallback {
             }
         }
 
-        return rootView
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.app_bar_search -> {
-                val intent = Intent(context, SearchTeamActivity::class.java)
+                val intent = Intent(context, TeamSearchActivity::class.java)
                 startActivity(intent)
                 true
             }
@@ -120,22 +109,28 @@ class TeamHomeFragment : androidx.fragment.app.Fragment(), TeamCallback {
 
     override fun showLoading() {
         requireActivity().runOnUiThread {
-            progressBar.visible()
+            progressBar_team.visible()
         }
     }
 
     override fun hideLoading() {
         requireActivity().runOnUiThread {
-            progressBar.invisible()
+            progressBar_team.invisible()
         }
     }
 
-    override fun showData(dataTeam: List<Team>) {
+    override fun onResult(data: List<Team>) {
         requireActivity().runOnUiThread {
             adapter.notifyDataSetChanged()
-            swipeRefresh.isRefreshing = false
+            swipeRefresh_team.isRefreshing = false
             teams.clear()
-            teams.addAll(dataTeam)
+            teams.addAll(data)
+        }
+    }
+
+    override fun onFailed(message: String) {
+        requireContext().runOnUiThread {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
     }
 

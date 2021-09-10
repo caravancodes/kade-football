@@ -17,19 +17,19 @@ package id.frogobox.footballapps.sources
  * -----------------------------------------
  * id.amirisback.frogobox
  */
-object TheSportDBApi {
+object ApiUrl {
 
     private const val BASE_URL = "https://www.thesportsdb.com/api/v1/json/1/"
 
-    fun getTeamDetailById(teamId: String?): String {
+    fun urlTeamDetailById(teamId: String?): String {
         return "${BASE_URL}lookupteam.php?id=${teamId.toString()}"
     }
 
-    fun getAllTeamsByLeagueName(leagueName: String?): String {
+    fun urlTeamsByLeagueName(leagueName: String?): String {
         return "${BASE_URL}search_all_teams.php?l=${leagueName.toString()}"
     }
 
-    fun getTeamsSearch(team: String?): String {
+    fun urlTeamsSearch(team: String?): String {
         return "${BASE_URL}searchteams.php?t=${team.toString()}"
     }
 

@@ -1,13 +1,11 @@
-package id.frogobox.footballapps.mvp.search
-
-import id.frogobox.footballapps.models.Team
+package id.frogobox.footballapps.mvp.main
 
 /**
  * Created by Faisal Amir
  * FrogoBox Inc License
  * =========================================
  * FootBallApps
- * Copyright (C) 06/12/2018.
+ * Copyright (C) 13/12/2018.
  * All rights reserved
  * -----------------------------------------
  * Name     : Muhammad Faisal Amir
@@ -19,7 +17,7 @@ import id.frogobox.footballapps.models.Team
  * -----------------------------------------
  * id.amirisback.frogobox
  */
-interface SearchCallback {
-    fun showSearchTeamList(data: List<Team>)
-    fun showSearchTeamListNull()
+interface MainHandlerCallback<T : MainFragmentCallback> {
+    fun onAttach(view: T)
+    fun onDetach()
 }

@@ -22,9 +22,11 @@ import java.net.URL
  * -----------------------------------------
  * id.amirisback.frogobox
  */
-class ApiRepository {
+object ApiRepository {
+
     @DelicateCoroutinesApi
     suspend fun doRequest(url: String): String = withContext(Dispatchers.Default) {
-            URL(url).readText()
-        }
+        URL(url).readText()
+    }
+
 }
